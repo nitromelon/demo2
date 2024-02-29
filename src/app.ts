@@ -2,7 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import InnoBE from "./request/request";
-import Demo from "./app/demo";
+import Demo, { Demo2 } from "./app/demo";
 
 dotenv.config();
 
@@ -18,5 +18,6 @@ InnoBE.create(
 )
     .config()
     .route("/demo", new Demo())
+    .route("/demo/test", new Demo2())
     .catch()
     .start();
