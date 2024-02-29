@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Express } from "express";
+import helmet from "helmet";
 import { log } from "../middleware/log";
 import { setHeader } from "../middleware/header";
 import CRUD from "./CRUD";
@@ -38,16 +39,19 @@ class InnoBE {
 
     // middleware
     config(): InnoBE {
-        this.app.use(cors());
+        this.app.use(cors({
+            origin: `http://localhost:${this.frontendPort}`,
+            credentials: true,
+        }));
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.text({ limit: "1mb" }));
         this.app.use(cookieParser());
-        this.app.disable("x-powered-by");
+        this.app.use(helmet());
 
         // custom middleware
         this.app.use(log);
-        this.app.use(setHeader(`${this.frontendPort}`));
+        this.app.use(setHeader);
 
         return this;
     }
