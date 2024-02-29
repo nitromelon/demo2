@@ -1,7 +1,7 @@
 import { RequestHandler, Request, Response } from "express";
 
-const defaultHandler: RequestHandler = (_req: Request, res: Response) =>
-    res.status(404).json({ message: `Cannot ${_req.method} ${_req.url}` });
+const defaultHandler: RequestHandler = (req: Request, res: Response) =>
+    res.status(404).json({ message: `Cannot ${req.method} ${req.url}` });
 
 abstract class CRUD {
     post: RequestHandler = defaultHandler; // create

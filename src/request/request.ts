@@ -41,8 +41,11 @@ class InnoBE {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.text({ limit: "1mb" }));
         this.app.use(cookieParser());
         this.app.disable("x-powered-by");
+
+        // custom middleware
         this.app.use(log);
         this.app.use(setHeader(`${this.frontendPort}`));
 
