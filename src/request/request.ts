@@ -39,10 +39,12 @@ class InnoBE {
 
     // middleware
     config(): InnoBE {
-        this.app.use(cors({
-            origin: `http://localhost:${this.frontendPort}`,
-            credentials: true,
-        }));
+        this.app.use(
+            cors({
+                origin: `http://localhost:${this.frontendPort}`,
+                credentials: true,
+            })
+        );
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.text({ limit: "1mb" }));
@@ -81,7 +83,7 @@ class InnoBE {
     catch(): InnoBE {
         this.app.all("*", (_req, res) => {
             res.status(404).json({ message: "Not Found" });
-        })
+        });
 
         return this;
     }
