@@ -11,18 +11,22 @@ services:
         ports:
             - 8080:8080
 
-    geth:
-        image: ethereum/client-go
-        ports:
-            - 8545:8545
-            - 8546:8546
-        volumes:
-            # path:path => first path is the local path, second path is the path in the container
-            - ./geth:/root/.ethereum
-            - ./data:/root/ # TODO: remove this line
+    # geth:
+    #     image: ethereum/client-go
+    #     ports:
+    #         - 8545:8545
+    #         - 8546:8546
+    #     volumes:
+    #         # path:path => first path is the local path, second path is the path in the container
+    #         - ./geth:/root/.ethereum
+    #         - ./data:/root/ # TODO: remove this line
 
     mongodb:
-        image: mongo
+        image: prismagraphql/mongo-single-replica
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: inno
+            MONGO_INITDB_ROOT_PASSWORD: inno
         ports:
             - 27017:27017
         volumes:

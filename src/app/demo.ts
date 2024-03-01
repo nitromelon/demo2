@@ -6,8 +6,10 @@ export default class Demo extends CRUD {
         res.status(201).json({ message: "POST request to /demo" });
     };
 
-    override get = (_req: Request, res: Response) => {
-        res.status(200).json({ message: "GET request to /demo" });
+    override get = (req: Request, res: Response) => {
+        res.status(200).json({
+            message: `GET request to /demo with id ${req.params["id"]}`,
+        });
     };
 
     override put = (_req: Request, res: Response) => {
