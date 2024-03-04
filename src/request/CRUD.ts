@@ -1,10 +1,10 @@
-import { RequestHandler } from "express";
+import RequestChain from "./chain";
 
 interface CRUD {
-    post: RequestHandler // create
-    get: RequestHandler // read
-    put: RequestHandler // update
-    delete: RequestHandler // delete;
+    post: RequestChain// create
+    get: RequestChain // read
+    put: RequestChain // update
+    delete: RequestChain // delete;
 }
 
 export default CRUD;

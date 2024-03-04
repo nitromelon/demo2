@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Singleton class to handle the database connection
-// create will be called once in the main function
+// create() will be called once in the main function
 // then getDB will be called to get the database connection
 // |-> Location: app/app.ts (class App)
 // Note: every sub-app will have to extend App to get the database connection
@@ -24,7 +24,15 @@ class InnoDB {
         port: string
     ): Promise<void> {
         const url = `mongodb://${user}:${password}@${host}:${port}/${dbName}`;
-        this.mongoose = await mongoose.connect(url);
+        try {
+            console.log("Connecting to database");
+            this.mongoose = await mongoose.connect(url);
+            console.log("Database connected");
+        } catch (e) {
+            console.error("Database connection failed");
+            console.error(e);
+            this.mongoose = null;
+        }
     }
 
     getDB(): typeof mongoose | null {
