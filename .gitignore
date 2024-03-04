@@ -5,3 +5,4 @@ dist
 ./geth
 ./mongo
 ./data
+.venv

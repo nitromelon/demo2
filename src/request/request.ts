@@ -29,12 +29,11 @@ class InnoBE {
 
     // make static constructor
     static create(
-        app: Express,
         address: string,
         backendPort: number,
         frontendPort: number
     ): InnoBE {
-        return new InnoBE(app, address, backendPort, frontendPort);
+        return new InnoBE(express(), address, backendPort, frontendPort);
     }
 
     // middleware
