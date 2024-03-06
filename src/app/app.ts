@@ -1,10 +1,11 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import CRUD from "../request/CRUD";
-import InnoDB from "../request/database";
+// import InnoDB from "../request/database";
 import RequestChain from "../request/chain";
 
 class App implements CRUD {
-    db: typeof mongoose | null = InnoDB.getSelf().getDB();
+    // db: typeof mongoose | null = InnoDB.getSelf().getDB();
+    db = null;
     post: RequestChain = RequestChain.default();
     get: RequestChain = RequestChain.default();
     put: RequestChain = RequestChain.default();
