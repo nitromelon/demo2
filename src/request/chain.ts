@@ -20,11 +20,11 @@ class RequestChain {
     errorHandler = errorLog as RequestHandler;
 
     constructor(handler: RequestHandler) {
-        this.handler = handler;
+        this.handler = asyncErrorHandler(handler);
     }
 
     static create(handler: RequestHandler): RequestChain {
-        return new RequestChain(asyncErrorHandler(handler));
+        return new RequestChain(handler);
     }
 
     static default(): RequestChain {
