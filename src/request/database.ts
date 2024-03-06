@@ -1,13 +1,14 @@
-// import mongoose from "mongoose";
-
 // // Singleton class to handle the database connection
 // // create() will be called once in the main function
 // // then getDB will be called to get the database connection
 // // |-> Location: app/app.ts (class App)
+
+// import { PrismaClient } from "@prisma/client";
+
 // // Note: every sub-app will have to extend App to get the database connection
 // class InnoDB {
 //     static self: InnoDB | null = null;
-//     mongoose: typeof mongoose | null = null;
+//     mongoose: PrismaClient | null = new PrismaClient();
 
 //     static getSelf(): InnoDB {
 //         if (InnoDB.self === null) {
