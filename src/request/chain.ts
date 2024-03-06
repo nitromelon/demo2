@@ -20,18 +20,13 @@ class RequestChain {
         return new RequestChain(defaultHandler);
     }
 
-    set_handler(handler: RequestHandler): RequestChain {
-        this.handler = handler;
-        return this;
-    }
-
     add_middleware(middleware: RequestHandler): RequestChain {
         this.middlewares.push(middleware);
         return this;
     }
 
     export(): RequestHandler[] {
-        return this.middlewares.concat(this.handler);
+        return [...this.middlewares, this.handler]
     }
 }
 

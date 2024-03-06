@@ -1,11 +1,10 @@
-// import mongoose from "mongoose";
 import CRUD from "../request/CRUD";
-// import InnoDB from "../request/database";
+import InnoDB from "../request/database";
 import RequestChain from "../request/chain";
+import { PrismaClient } from "@prisma/client";
 
 class App implements CRUD {
-    // db: typeof mongoose | null = InnoDB.getSelf().getDB();
-    db = null;
+    db: PrismaClient = InnoDB.getSelf().getDB();
     post: RequestChain = RequestChain.default();
     get: RequestChain = RequestChain.default();
     put: RequestChain = RequestChain.default();
