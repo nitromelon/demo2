@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Express } from "express";
 import helmet from "helmet";
+import compression from "compression";
 import { log } from "../middleware/log";
 import { setHeader } from "../middleware/header";
 import CRUD from "./CRUD";
@@ -49,6 +50,7 @@ class InnoBE {
         this.app.use(express.text({ limit: "1mb" }));
         this.app.use(cookieParser());
         this.app.use(helmet());
+        this.app.use(compression());
 
         // custom middleware
         this.app.use(log);
