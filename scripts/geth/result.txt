@@ -1,0 +1,658 @@
+failed to get console mode for stdout: The handle is invalid.
+[1A[1B[0G[?25l[+] Running 3/0
+ [32m✔[0m Container geth-geth-bootnode-1      [32mCreated[0m[34m0.0s [0m
+ [32m✔[0m Container geth-geth-miner-1         [32mCreated[0m[34m0.0s [0m
+ [32m✔[0m Container geth-geth-rpc-endpoint-1  [32mCreated[0m[34m0.0s [0m
+[?25hAttaching to geth-bootnode-1, geth-miner-1, geth-rpc-endpoint-1
+geth-bootnode-1      | Fatal: Failed to register the Ethereum service: only PoS networks are supported, please transition old ones with Geth v1.13.x
+geth-bootnode-1 exited with code 1
+geth-miner-1         | Incorrect Usage: flag provided but not defined: -miner.threads
+geth-miner-1         | 
+geth-miner-1         | NAME:
+geth-miner-1         |    geth - the go-ethereum command line interface
+geth-miner-1         | 
+geth-miner-1         | USAGE:
+geth-miner-1         |    geth [global options] command [command options] [arguments...]
+geth-miner-1         | 
+geth-miner-1         | VERSION:
+geth-miner-1         |    1.14.0-unstable-e31709db
+geth-miner-1         | 
+geth-miner-1         | COMMANDS:
+geth-miner-1         |    account                Manage accounts
+geth-miner-1         |    attach                 Start an interactive JavaScript environment (connect to node)
+geth-miner-1         |    console                Start an interactive JavaScript environment
+geth-miner-1         |    db                     Low level database operations
+geth-miner-1         |    dump                   Dump a specific block from storage
+geth-miner-1         |    dumpconfig             Export configuration values in a TOML format
+geth-miner-1         |    dumpgenesis            Dumps genesis block JSON configuration to stdout
+geth-miner-1         |    export                 Export blockchain into file
+geth-miner-1         |    export-history         Export blockchain history to Era archives
+geth-miner-1         |    import                 Import a blockchain file
+geth-miner-1         |    import-history         Import an Era archive
+geth-miner-1         |    import-preimages       Import the preimage database from an RLP stream
+geth-miner-1         |    init                   Bootstrap and initialize a new genesis block
+geth-miner-1         |    js                     (DEPRECATED) Execute the specified JavaScript files
+geth-miner-1         |    license                Display license information
+geth-miner-1         |    removedb               Remove blockchain and state databases
+geth-miner-1         |    show-deprecated-flags  Show flags that have been deprecated
+geth-miner-1         |    snapshot               A set of commands based on the snapshot
+geth-miner-1         |    verkle                 A set of experimental verkle tree management commands
+geth-miner-1         |    version                Print version numbers
+geth-miner-1         |    version-check          Checks (online) for known Geth security vulnerabilities
+geth-miner-1         |    wallet                 Manage Ethereum presale wallets
+geth-miner-1         |    help, h                Shows a list of commands or help for one command
+geth-miner-1         | 
+geth-miner-1         | GLOBAL OPTIONS:
+geth-miner-1         |    ACCOUNT
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --allow-insecure-unlock             (default: false)                   ($GETH_ALLOW_INSECURE_UNLOCK)
+geth-miner-1         |           Allow insecure account unlocking when account-related RPCs are exposed by http
+geth-miner-1         |    
+geth-miner-1         |     --keystore value                                                       ($GETH_KEYSTORE)
+geth-miner-1         |           Directory for the keystore (default = inside the datadir)
+geth-miner-1         |    
+geth-miner-1         |     --lightkdf                          (default: false)                   ($GETH_LIGHTKDF)
+geth-miner-1         |           Reduce key-derivation RAM & CPU usage at some expense of KDF strength
+geth-miner-1         |    
+geth-miner-1         |     --password value                                                       ($GETH_PASSWORD)
+geth-miner-1         |           Password file to use for non-interactive password input
+geth-miner-1         |    
+geth-miner-1         |     --pcscdpath value                   (default: "/run/pcscd/pcscd.comm") ($GETH_PCSCDPATH)
+geth-miner-1         |           Path to the smartcard daemon (pcscd) socket file
+geth-miner-1         |    
+geth-miner-1         |     --signer value                                                         ($GETH_SIGNER)
+geth-miner-1         |           External signer (url or path to ipc file)
+geth-miner-1         |    
+geth-miner-1         |     --unlock value                                                         ($GETH_UNLOCK)
+geth-miner-1         |           Comma separated list of accounts to unlock
+geth-miner-1         |    
+geth-miner-1         |     --usb                               (default: false)                   ($GETH_USB)
+geth-miner-1         |           Enable monitoring and management of USB hardware wallets
+geth-miner-1         | 
+geth-miner-1         |    ALIASED (deprecated)
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --cache.trie.journal value                                             ($GETH_CACHE_TRIE_JOURNAL)
+geth-miner-1         |           Disk journal directory for trie cache to survive node restarts
+geth-miner-1         |    
+geth-miner-1         |     --cache.trie.rejournal value        (default: 0s)                      ($GETH_CACHE_TRIE_REJOURNAL)
+geth-miner-1         |           Time interval to regenerate the trie cache journal
+geth-miner-1         |    
+geth-miner-1         |     --log.backtrace value                                                  ($GETH_LOG_BACKTRACE)
+geth-miner-1         |           Request a stack trace at a specific logging statement (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --log.debug                         (default: false)                   ($GETH_LOG_DEBUG)
+geth-miner-1         |           Prepends log messages with call-site location (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --nousb                             (default: false)                   ($GETH_NOUSB)
+geth-miner-1         |           Disables monitoring for and managing USB hardware wallets (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --txlookuplimit value               (default: 2350000)                 ($GETH_TXLOOKUPLIMIT)
+geth-miner-1         |           Number of recent blocks to maintain transactions index for (default = about one
+geth-miner-1         |           year, 0 = entire chain) (deprecated, use history.transactions instead)
+geth-miner-1         |    
+geth-miner-1         |     --v5disc                            (default: false)                   ($GETH_V5DISC)
+geth-miner-1         |           Enables the experimental RLPx V5 (Topic Discovery) mechanism (deprecated, use
+geth-miner-1         |           --discv5 instead)
+geth-miner-1         |    
+geth-miner-1         |     --whitelist value                                                      ($GETH_WHITELIST)
+geth-miner-1         |           Comma separated block number-to-hash mappings to enforce (<number>=<hash>)
+geth-miner-1         |           (deprecated in favor of --eth.requiredblocks)
+geth-miner-1         | 
+geth-miner-1         |    API AND CONSOLE
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --authrpc.addr value                (default: "localhost")             ($GETH_AUTHRPC_ADDR)
+geth-miner-1         |           Listening address for authenticated APIs
+geth-miner-1         |    
+geth-miner-1         |     --authrpc.jwtsecret value                                              ($GETH_AUTHRPC_JWTSECRET)
+geth-miner-1         |           Path to a JWT secret to use for authenticated RPC endpoints
+geth-miner-1         |    
+geth-miner-1         |     --authrpc.port value                (default: 8551)                    ($GETH_AUTHRPC_PORT)
+geth-miner-1         |           Listening port for authenticated APIs
+geth-miner-1         |    
+geth-miner-1         |     --authrpc.vhosts value              (default: "localhost")             ($GETH_AUTHRPC_VHOSTS)
+geth-miner-1         |           Comma separated list of virtual hostnames from which to accept requests (server
+geth-miner-1         |           enforced). Accepts '*' wildcard.
+geth-miner-1         |    
+geth-miner-1         |     --exec value                                                           ($GETH_EXEC)
+geth-miner-1         |           Execute JavaScript statement
+geth-miner-1         |    
+geth-miner-1         |     --graphql                           (default: false)                   ($GETH_GRAPHQL)
+geth-miner-1         |           Enable GraphQL on the HTTP-RPC server. Note that GraphQL can only be started if
+geth-miner-1         |           an HTTP server is started as well.
+geth-miner-1         |    
+geth-miner-1         |     --graphql.corsdomain value                                             ($GETH_GRAPHQL_CORSDOMAIN)
+geth-miner-1         |           Comma separated list of domains from which to accept cross origin requests
+geth-miner-1         |           (browser enforced)
+geth-miner-1         |    
+geth-miner-1         |     --graphql.vhosts value              (default: "localhost")             ($GETH_GRAPHQL_VHOSTS)
+geth-miner-1         |           Comma separated list of virtual hostnames from which to accept requests (server
+geth-miner-1         |           enforced). Accepts '*' wildcard.
+geth-miner-1         |    
+geth-miner-1         |     --header value, -H value                                               ($GETH_HEADER)
+geth-miner-1         |           Pass custom headers to the RPC server when using --remotedb or the geth attach
+geth-miner-1         |           console. This flag can be given multiple times.
+geth-miner-1         |    
+geth-miner-1         |     --http                              (default: false)                   ($GETH_HTTP)
+geth-miner-1         |           Enable the HTTP-RPC server
+geth-miner-1         |    
+geth-miner-1         |     --http.addr value                   (default: "localhost")             ($GETH_HTTP_ADDR)
+geth-miner-1         |           HTTP-RPC server listening interface
+geth-miner-1         |    
+geth-miner-1         |     --http.api value                                                       ($GETH_HTTP_API)
+geth-miner-1         |           API's offered over the HTTP-RPC interface
+geth-miner-1         |    
+geth-miner-1         |     --http.corsdomain value                                                ($GETH_HTTP_CORSDOMAIN)
+geth-miner-1         |           Comma separated list of domains from which to accept cross origin requests
+geth-miner-1         |           (browser enforced)
+geth-miner-1         |    
+geth-miner-1         |     --http.port value                   (default: 8545)                    ($GETH_HTTP_PORT)
+geth-miner-1         |           HTTP-RPC server listening port
+geth-miner-1         |    
+geth-miner-1         |     --http.rpcprefix value                                                 ($GETH_HTTP_RPCPREFIX)
+geth-miner-1         |           HTTP path path prefix on which JSON-RPC is served. Use '/' to serve on all
+geth-miner-1         |           paths.
+geth-miner-1         |    
+geth-miner-1         |     --http.vhosts value                 (default: "localhost")             ($GETH_HTTP_VHOSTS)
+geth-miner-1         |           Comma separated list of virtual hostnames from which to accept requests (server
+geth-miner-1         |           enforced). Accepts '*' wildcard.
+geth-miner-1         |    
+geth-miner-1         |     --ipcdisable                        (default: false)                   ($GETH_IPCDISABLE)
+geth-miner-1         |           Disable the IPC-RPC server
+geth-miner-1         |    
+geth-miner-1         |     --ipcpath value                                                        ($GETH_IPCPATH)
+geth-miner-1         |           Filename for IPC socket/pipe within the datadir (explicit paths escape it)
+geth-miner-1         |    
+geth-miner-1         |     --jspath value                      (default: .)                       ($GETH_JSPATH)
+geth-miner-1         |           JavaScript root path for `loadScript`
+geth-miner-1         |    
+geth-miner-1         |     --preload value                                                        ($GETH_PRELOAD)
+geth-miner-1         |           Comma separated list of JavaScript files to preload into the console
+geth-miner-1         |    
+geth-miner-1         |     --rpc.allow-unprotected-txs         (default: false)                   ($GETH_RPC_ALLOW_UNPROTECTED_TXS)
+geth-miner-1         |           Allow for unprotected (non EIP155 signed) transactions to be submitted via RPC
+geth-miner-1         |    
+geth-miner-1         |     --rpc.batch-request-limit value     (default: 1000)                    ($GETH_RPC_BATCH_REQUEST_LIMIT)
+geth-miner-1         |           Maximum number of requests in a batch
+geth-miner-1         |    
+geth-miner-1         |     --rpc.batch-response-max-size value (default: 25000000)                ($GETH_RPC_BATCH_RESPONSE_MAX_SIZE)
+geth-miner-1         |           Maximum number of bytes returned from a batched call
+geth-miner-1         |    
+geth-miner-1         |     --rpc.enabledeprecatedpersonal      (default: false)                   ($GETH_RPC_ENABLEDEPRECATEDPERSONAL)
+geth-miner-1         |           Enables the (deprecated) personal namespace
+geth-miner-1         |    
+geth-miner-1         |     --rpc.evmtimeout value              (default: 5s)                      ($GETH_RPC_EVMTIMEOUT)
+geth-miner-1         |           Sets a timeout used for eth_call (0=infinite)
+geth-miner-1         |    
+geth-miner-1         |     --rpc.gascap value                  (default: 50000000)                ($GETH_RPC_GASCAP)
+geth-miner-1         |           Sets a cap on gas that can be used in eth_call/estimateGas (0=infinite)
+geth-miner-1         |    
+geth-miner-1         |     --rpc.txfeecap value                (default: 1)                       ($GETH_RPC_TXFEECAP)
+geth-miner-1         |           Sets a cap on transaction fee (in ether) that can be sent via the RPC APIs (0 =
+geth-miner-1         |           no cap)
+geth-miner-1         |    
+geth-miner-1         |     --ws                                (default: false)                   ($GETH_WS)
+geth-miner-1         |           Enable the WS-RPC server
+geth-miner-1         |    
+geth-miner-1         |     --ws.addr value                     (default: "localhost")             ($GETH_WS_ADDR)
+geth-miner-1         |           WS-RPC server listening interface
+geth-miner-1         |    
+geth-miner-1         |     --ws.api value                                                         ($GETH_WS_API)
+geth-miner-1         |           API's offered over the WS-RPC interface
+geth-miner-1         |    
+geth-miner-1         |     --ws.origins value                                                     ($GETH_WS_ORIGINS)
+geth-miner-1         |           Origins from which to accept websockets requests
+geth-miner-1         |    
+geth-miner-1         |     --ws.port value                     (default: 8546)                    ($GETH_WS_PORT)
+geth-miner-1         |           WS-RPC server listening port
+geth-miner-1         |    
+geth-miner-1         |     --ws.rpcprefix value                                                   ($GETH_WS_RPCPREFIX)
+geth-miner-1         |           HTTP path prefix on which JSON-RPC is served. Use '/' to serve on all paths.
+geth-miner-1         | 
+geth-miner-1         |    BEACON CHAIN
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --beacon.api value                                                     ($GETH_BEACON_API)
+geth-miner-1         |           Beacon node (CL) light client API URL. This flag can be given multiple times.
+geth-miner-1         |    
+geth-miner-1         |     --beacon.api.header value                                              ($GETH_BEACON_API_HEADER)
+geth-miner-1         |           Pass custom HTTP header fields to the emote beacon node API in "key:value"
+geth-miner-1         |           format. This flag can be given multiple times.
+geth-miner-1         |    
+geth-miner-1         |     --beacon.checkpoint value                                              ($GETH_BEACON_CHECKPOINT)
+geth-miner-1         |           Beacon chain weak subjectivity checkpoint block hash
+geth-miner-1         |    
+geth-miner-1         |     --beacon.config value                                                  ($GETH_BEACON_CONFIG)
+geth-miner-1         |           Beacon chain config YAML file
+geth-miner-1         |    
+geth-miner-1         |     --beacon.genesis.gvroot value                                          ($GETH_BEACON_GENESIS_GVROOT)
+geth-miner-1         |           Beacon chain genesis validators root
+geth-miner-1         |    
+geth-miner-1         |     --beacon.genesis.time value         (default: 0)                       ($GETH_BEACON_GENESIS_TIME)
+geth-miner-1         |           Beacon chain genesis time
+geth-miner-1         |    
+geth-miner-1         |     --beacon.nofilter                   (default: false)                   ($GETH_BEACON_NOFILTER)
+geth-miner-1         |           Disable future slot signature filter
+geth-miner-1         |    
+geth-miner-1         |     --beacon.threshold value            (default: 342)                     ($GETH_BEACON_THRESHOLD)
+geth-miner-1         |           Beacon sync committee participation threshold
+geth-miner-1         | 
+geth-miner-1         |    DEVELOPER CHAIN
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --dev                               (default: false)                   ($GETH_DEV)
+geth-miner-1         |           Ephemeral proof-of-authority network with a pre-funded developer account, mining
+geth-miner-1         |           enabled
+geth-miner-1         |    
+geth-miner-1         |     --dev.gaslimit value                (default: 11500000)                ($GETH_DEV_GASLIMIT)
+geth-miner-1         |           Initial block gas limit
+geth-miner-1         |    
+geth-miner-1         |     --dev.period value                  (default: 0)                       ($GETH_DEV_PERIOD)
+geth-miner-1         |           Block period to use in developer mode (0 = mine only if transaction pending)
+geth-miner-1         | 
+geth-miner-1         |    ETHEREUM
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --bloomfilter.size value            (default: 2048)                    ($GETH_BLOOMFILTER_SIZE)
+geth-miner-1         |           Megabytes of memory allocated to bloom-filter for pruning
+geth-miner-1         |    
+geth-miner-1         |     --config value                                                         ($GETH_CONFIG)
+geth-miner-1         |           TOML configuration file
+geth-miner-1         |    
+geth-miner-1         |     --datadir value                     (default: /root/.ethereum)         ($GETH_DATADIR)
+geth-miner-1         |           Data directory for the databases and keystore
+geth-miner-1         |    
+geth-miner-1         |     --datadir.ancient value                                                ($GETH_DATADIR_ANCIENT)
+geth-miner-1         |           Root directory for ancient data (default = inside chaindata)
+geth-miner-1         |    
+geth-miner-1         |     --datadir.minfreedisk value                                            ($GETH_DATADIR_MINFREEDISK)
+geth-miner-1         |           Minimum free disk space in MB, once reached triggers auto shut down (default =
+geth-miner-1         |           --cache.gc converted to MB, 0 = disabled)
+geth-miner-1         |    
+geth-miner-1         |     --db.engine value                                                      ($GETH_DB_ENGINE)
+geth-miner-1         |           Backing database implementation to use ('pebble' or 'leveldb')
+geth-miner-1         |    
+geth-miner-1         |     --eth.requiredblocks value                                             ($GETH_ETH_REQUIREDBLOCKS)
+geth-miner-1         |           Comma separated block number-to-hash mappings to require for peering
+geth-miner-1         |           (<number>=<hash>)
+geth-miner-1         |    
+geth-miner-1         |     --exitwhensynced                    (default: false)                   ($GETH_EXITWHENSYNCED)
+geth-miner-1         |           Exits after block synchronisation completes
+geth-miner-1         |    
+geth-miner-1         |     --goerli                            (default: false)                   ($GETH_GOERLI)
+geth-miner-1         |           Görli network: pre-configured proof-of-authority test network
+geth-miner-1         |    
+geth-miner-1         |     --holesky                           (default: false)                   ($GETH_HOLESKY)
+geth-miner-1         |           Holesky network: pre-configured proof-of-stake test network
+geth-miner-1         |    
+geth-miner-1         |     --mainnet                           (default: false)                   ($GETH_MAINNET)
+geth-miner-1         |           Ethereum mainnet
+geth-miner-1         |    
+geth-miner-1         |     --networkid value                   (default: 0)                       ($GETH_NETWORKID)
+geth-miner-1         |           Explicitly set network id (integer)(For testnets: use --goerli, --sepolia,
+geth-miner-1         |           --holesky instead)
+geth-miner-1         |    
+geth-miner-1         |     --override.cancun value             (default: 0)                       ($GETH_OVERRIDE_CANCUN)
+geth-miner-1         |           Manually specify the Cancun fork timestamp, overriding the bundled setting
+geth-miner-1         |    
+geth-miner-1         |     --override.verkle value             (default: 0)                       ($GETH_OVERRIDE_VERKLE)
+geth-miner-1         |           Manually specify the Verkle fork timestamp, overriding the bundled setting
+geth-miner-1         |    
+geth-miner-1         |     --sepolia                           (default: false)                   ($GETH_SEPOLIA)
+geth-miner-1         |           Sepolia network: pre-configured proof-of-work test network
+geth-miner-1         |    
+geth-miner-1         |     --snapshot                          (default: true)                    ($GETH_SNAPSHOT)
+geth-miner-1         |           Enables snapshot-database mode (default = enable)
+geth-miner-1         | 
+geth-miner-1         |    GAS PRICE ORACLE
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --gpo.blocks value                  (default: 20)                      ($GETH_GPO_BLOCKS)
+geth-miner-1         |           Number of recent blocks to check for gas prices
+geth-miner-1         |    
+geth-miner-1         |     --gpo.ignoreprice value             (default: 2)                       ($GETH_GPO_IGNOREPRICE)
+geth-miner-1         |           Gas price below which gpo will ignore transactions
+geth-miner-1         |    
+geth-miner-1         |     --gpo.maxprice value                (default: 500000000000)            ($GETH_GPO_MAXPRICE)
+geth-miner-1         |           Maximum transaction priority fee (or gasprice before London fork) to be
+geth-miner-1         |           recommended by gpo
+geth-miner-1         |    
+geth-miner-1         |     --gpo.percentile value              (default: 60)                      ($GETH_GPO_PERCENTILE)
+geth-miner-1         |           Suggested gas price is the given percentile of a set of recent transaction gas
+geth-miner-1         |           prices
+geth-miner-1         | 
+geth-miner-1         |    LIGHT CLIENT
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --light.egress value                (default: 0)                       ($GETH_LIGHT_EGRESS)
+geth-miner-1         |           Outgoing bandwidth limit for serving light clients (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --light.ingress value               (default: 0)                       ($GETH_LIGHT_INGRESS)
+geth-miner-1         |           Incoming bandwidth limit for serving light clients (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --light.maxpeers value              (default: 100)                     ($GETH_LIGHT_MAXPEERS)
+geth-miner-1         |           Maximum number of light clients to serve, or light servers to attach to
+geth-miner-1         |           (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --light.nopruning                   (default: false)                   ($GETH_LIGHT_NOPRUNING)
+geth-miner-1         |           Disable ancient light chain data pruning (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --light.nosyncserve                 (default: false)                   ($GETH_LIGHT_NOSYNCSERVE)
+geth-miner-1         |           Enables serving light clients before syncing (deprecated)
+geth-miner-1         |    
+geth-miner-1         |     --light.serve value                 (default: 0)                       ($GETH_LIGHT_SERVE)
+geth-miner-1         |           Maximum percentage of time allowed for serving LES requests (deprecated)
+geth-miner-1         | 
+geth-miner-1         |    LOGGING AND DEBUGGING
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --log.compress                      (default: false)                   ($GETH_LOG_COMPRESS)
+geth-miner-1         |           Compress the log files
+geth-miner-1         |    
+geth-miner-1         |     --log.file value                                                       ($GETH_LOG_FILE)
+geth-miner-1         |           Write logs to a file
+geth-miner-1         |    
+geth-miner-1         |     --log.format value                                                     ($GETH_LOG_FORMAT)
+geth-miner-1         |           Log format to use (json|logfmt|terminal)
+geth-miner-1         |    
+geth-miner-1         |     --log.maxage value                  (default: 30)                      ($GETH_LOG_MAXAGE)
+geth-miner-1         |           Maximum number of days to retain a log file
+geth-miner-1         |    
+geth-miner-1         |     --log.maxbackups value              (default: 10)                      ($GETH_LOG_MAXBACKUPS)
+geth-miner-1         |           Maximum number of log files to retain
+geth-miner-1         |    
+geth-miner-1         |     --log.maxsize value                 (default: 100)                     ($GETH_LOG_MAXSIZE)
+geth-miner-1         |           Maximum size in MBs of a single log file
+geth-miner-1         |    
+geth-miner-1         |     --log.rotate                        (default: false)                   ($GETH_LOG_ROTATE)
+geth-miner-1         |           Enables log file rotation
+geth-miner-1         |    
+geth-miner-1         |     --log.vmodule value                                                    ($GETH_LOG_VMODULE)
+geth-miner-1         |           Per-module verbosity: comma-separated list of <pattern>=<level> (e.g.
+geth-miner-1         |           eth/*=5,p2p=4)
+geth-miner-1         |    
+geth-miner-1         |     --nocompaction                      (default: false)                   ($GETH_NOCOMPACTION)
+geth-miner-1         |           Disables db compaction after import
+geth-miner-1         |    
+geth-miner-1         |     --pprof                             (default: false)                   ($GETH_PPROF)
+geth-miner-1         |           Enable the pprof HTTP server
+geth-miner-1         |    
+geth-miner-1         |     --pprof.addr value                  (default: "127.0.0.1")             ($GETH_PPROF_ADDR)
+geth-miner-1         |           pprof HTTP server listening interface
+geth-miner-1         |    
+geth-miner-1         |     --pprof.blockprofilerate value      (default: 0)                       ($GETH_PPROF_BLOCKPROFILERATE)
+geth-miner-1         |           Turn on block profiling with the given rate
+geth-miner-1         |    
+geth-miner-1         |     --pprof.cpuprofile value                                               ($GETH_PPROF_CPUPROFILE)
+geth-miner-1         |           Write CPU profile to the given file
+geth-miner-1         |    
+geth-miner-1         |     --pprof.memprofilerate value        (default: 524288)                  ($GETH_PPROF_MEMPROFILERATE)
+geth-miner-1         |           Turn on memory profiling with the given rate
+geth-miner-1         |    
+geth-miner-1         |     --pprof.port value                  (default: 6060)                    ($GETH_PPROF_PORT)
+geth-miner-1         |           pprof HTTP server listening port
+geth-miner-1         |    
+geth-miner-1         |     --remotedb value                                                       ($GETH_REMOTEDB)
+geth-miner-1         |           URL for remote database
+geth-miner-1         |    
+geth-miner-1         |     --trace value                                                          ($GETH_TRACE)
+geth-miner-1         |           Write execution trace to the given file
+geth-miner-1         |    
+geth-miner-1         |     --verbosity value                   (default: 3)                       ($GETH_VERBOSITY)
+geth-miner-1         |           Logging verbosity: 0=silent, 1=error, 2=warn, 3=info, 4=debug, 5=detail
+geth-miner-1         | 
+geth-miner-1         |    METRICS AND STATS
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --ethstats value                                                       ($GETH_ETHSTATS)
+geth-miner-1         |           Reporting URL of a ethstats service (nodename:secret@host:port)
+geth-miner-1         |    
+geth-miner-1         |     --metrics                           (default: false)                   ($GETH_METRICS)
+geth-miner-1         |           Enable metrics collection and reporting
+geth-miner-1         |    
+geth-miner-1         |     --metrics.addr value                                                   ($GETH_METRICS_ADDR)
+geth-miner-1         |           Enable stand-alone metrics HTTP server listening interface.
+geth-miner-1         |    
+geth-miner-1         |     --metrics.expensive                 (default: false)                   ($GETH_METRICS_EXPENSIVE)
+geth-miner-1         |           Enable expensive metrics collection and reporting
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb                  (default: false)                   ($GETH_METRICS_INFLUXDB)
+geth-miner-1         |           Enable metrics export/push to an external InfluxDB database
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.bucket value     (default: "geth")                  ($GETH_METRICS_INFLUXDB_BUCKET)
+geth-miner-1         |           InfluxDB bucket name to push reported metrics to (v2 only)
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.database value   (default: "geth")                  ($GETH_METRICS_INFLUXDB_DATABASE)
+geth-miner-1         |           InfluxDB database name to push reported metrics to
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.endpoint value   (default: "http://localhost:8086") ($GETH_METRICS_INFLUXDB_ENDPOINT)
+geth-miner-1         |           InfluxDB API endpoint to report metrics to
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.organization value (default: "geth")                  ($GETH_METRICS_INFLUXDB_ORGANIZATION)
+geth-miner-1         |           InfluxDB organization name (v2 only)
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.password value   (default: "test")                  ($GETH_METRICS_INFLUXDB_PASSWORD)
+geth-miner-1         |           Password to authorize access to the database
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.tags value       (default: "host=localhost")        ($GETH_METRICS_INFLUXDB_TAGS)
+geth-miner-1         |           Comma-separated InfluxDB tags (key/values) attached to all measurements
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.token value      (default: "test")                  ($GETH_METRICS_INFLUXDB_TOKEN)
+geth-miner-1         |           Token to authorize access to the database (v2 only)
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdb.username value   (default: "test")                  ($GETH_METRICS_INFLUXDB_USERNAME)
+geth-miner-1         |           Username to authorize access to the database
+geth-miner-1         |    
+geth-miner-1         |     --metrics.influxdbv2                (default: false)                   ($GETH_METRICS_INFLUXDBV2)
+geth-miner-1         |           Enable metrics export/push to an external InfluxDB v2 database
+geth-miner-1         |    
+geth-miner-1         |     --metrics.port value                (default: 6060)                    ($GETH_METRICS_PORT)
+geth-miner-1         |           Metrics HTTP server listening port.
+geth-miner-1         |           Please note that --metrics.addr must be set
+geth-miner-1         |           to start the server.
+geth-miner-1         | 
+geth-miner-1         |    MINER
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --mine                              (default: false)                   ($GETH_MINE)
+geth-miner-1         |           Enable mining
+geth-miner-1         |    
+geth-miner-1         |     --miner.etherbase value                                                ($GETH_MINER_ETHERBASE)
+geth-miner-1         |           0x prefixed public address for block mining rewards
+geth-miner-1         |    
+geth-miner-1         |     --miner.extradata value                                                ($GETH_MINER_EXTRADATA)
+geth-miner-1         |           Block extra data set by the miner (default = client version)
+geth-miner-1         |    
+geth-miner-1         |     --miner.gaslimit value              (default: 30000000)                ($GETH_MINER_GASLIMIT)
+geth-miner-1         |           Target gas ceiling for mined blocks
+geth-miner-1         |    
+geth-miner-1         |     --miner.gasprice value              (default: 1000000000)              ($GETH_MINER_GASPRICE)
+geth-miner-1         |           Minimum gas price for mining a transaction
+geth-miner-1         |    
+geth-miner-1         |     --miner.newpayload-timeout value    (default: 2s)                      ($GETH_MINER_NEWPAYLOAD_TIMEOUT)
+geth-miner-1         |           Specify the maximum time allowance for creating a new payload
+geth-miner-1         |    
+geth-miner-1         |     --miner.pending.feeRecipient value                                     ($GETH_MINER_PENDING_FEERECIPIENT)
+geth-miner-1         |           0x prefixed public address for the pending block producer (not used for actual
+geth-miner-1         |           block production)
+geth-miner-1         |    
+geth-miner-1         |     --miner.recommit value              (default: 2s)                      ($GETH_MINER_RECOMMIT)
+geth-miner-1         |           Time interval to recreate the block being mined
+geth-miner-1         | 
+geth-miner-1         |    MISC
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --help, -h                          (default: false)                  
+geth-miner-1         |           show help
+geth-miner-1         |    
+geth-miner-1         |     --synctarget value                                                     ($GETH_SYNCTARGET)
+geth-miner-1         |           Hash of the block to full sync to (dev testing feature)
+geth-miner-1         |    
+geth-miner-1         |     --version, -v                       (default: false)                  
+geth-miner-1         |           print the version
+geth-miner-1         | 
+geth-miner-1         |    NETWORKING
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --bootnodes value                                                      ($GETH_BOOTNODES)
+geth-miner-1         |           Comma separated enode URLs for P2P discovery bootstrap
+geth-miner-1         |    
+geth-miner-1         |     --discovery.dns value                                                  ($GETH_DISCOVERY_DNS)
+geth-miner-1         |           Sets DNS discovery entry points (use "" to disable DNS)
+geth-miner-1         |    
+geth-miner-1         |     --discovery.port value              (default: 30303)                   ($GETH_DISCOVERY_PORT)
+geth-miner-1         |           Use a custom UDP port for P2P discovery
+geth-miner-1         |    
+geth-miner-1         |     --discovery.v4, --discv4            (default: true)                    ($GETH_DISCOVERY_V4)
+geth-miner-1         |           Enables the V4 discovery mechanism
+geth-miner-1         |    
+geth-miner-1         |     --discovery.v5, --discv5            (default: false)                   ($GETH_DISCOVERY_V5)
+geth-miner-1         |           Enables the experimental RLPx V5 (Topic Discovery) mechanism
+geth-miner-1         |    
+geth-miner-1         |     --identity value                                                       ($GETH_IDENTITY)
+geth-miner-1         |           Custom node name
+geth-miner-1         |    
+geth-miner-1         |     --maxpeers value                    (default: 50)                      ($GETH_MAXPEERS)
+geth-miner-1         |           Maximum number of network peers (network disabled if set to 0)
+geth-miner-1         |    
+geth-miner-1         |     --maxpendpeers value                (default: 0)                       ($GETH_MAXPENDPEERS)
+geth-miner-1         |           Maximum number of pending connection attempts (defaults used if set to 0)
+geth-miner-1         |    
+geth-miner-1         |     --nat value                         (default: "any")                   ($GETH_NAT)
+geth-miner-1         |           NAT port mapping mechanism (any|none|upnp|pmp|pmp:<IP>|extip:<IP>)
+geth-miner-1         |    
+geth-miner-1         |     --netrestrict value                                                    ($GETH_NETRESTRICT)
+geth-miner-1         |           Restricts network communication to the given IP networks (CIDR masks)
+geth-miner-1         |    
+geth-miner-1         |     --nodekey value                                                        ($GETH_NODEKEY)
+geth-miner-1         |           P2P node key file
+geth-miner-1         |    
+geth-miner-1         |     --nodekeyhex value                                                     ($GETH_NODEKEYHEX)
+geth-miner-1         |           P2P node key as hex (for testing)
+geth-miner-1         |    
+geth-miner-1         |     --nodiscover                        (default: false)                   ($GETH_NODISCOVER)
+geth-miner-1         |           Disables the peer discovery mechanism (manual peer addition)
+geth-miner-1         |    
+geth-miner-1         |     --port value                        (default: 30303)                   ($GETH_PORT)
+geth-miner-1         |           Network listening port
+geth-miner-1         | 
+geth-miner-1         |    PERFORMANCE TUNING
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --cache value                       (default: 1024)                    ($GETH_CACHE)
+geth-miner-1         |           Megabytes of memory allocated to internal caching (default = 4096 mainnet full
+geth-miner-1         |           node, 128 light mode)
+geth-miner-1         |    
+geth-miner-1         |     --cache.blocklogs value             (default: 32)                      ($GETH_CACHE_BLOCKLOGS)
+geth-miner-1         |           Size (in number of blocks) of the log cache for filtering
+geth-miner-1         |    
+geth-miner-1         |     --cache.database value              (default: 50)                      ($GETH_CACHE_DATABASE)
+geth-miner-1         |           Percentage of cache memory allowance to use for database io
+geth-miner-1         |    
+geth-miner-1         |     --cache.gc value                    (default: 25)                      ($GETH_CACHE_GC)
+geth-miner-1         |           Percentage of cache memory allowance to use for trie pruning (default = 25% full
+geth-miner-1         |           mode, 0% archive mode)
+geth-miner-1         |    
+geth-miner-1         |     --cache.noprefetch                  (default: false)                   ($GETH_CACHE_NOPREFETCH)
+geth-miner-1         |           Disable heuristic state prefetch during block import (less CPU and disk IO, more
+geth-miner-1         |           time waiting for data)
+geth-miner-1         |    
+geth-miner-1         |     --cache.preimages                   (default: false)                   ($GETH_CACHE_PREIMAGES)
+geth-miner-1         |           Enable recording the SHA3/keccak preimages of trie keys
+geth-miner-1         |    
+geth-miner-1         |     --cache.snapshot value              (default: 10)                      ($GETH_CACHE_SNAPSHOT)
+geth-miner-1         |           Percentage of cache memory allowance to use for snapshot caching (default = 10%
+geth-miner-1         |           full mode, 20% archive mode)
+geth-miner-1         |    
+geth-miner-1         |     --cache.trie value                  (default: 15)                      ($GETH_CACHE_TRIE)
+geth-miner-1         |           Percentage of cache memory allowance to use for trie caching (default = 15% full
+geth-miner-1         |           mode, 30% archive mode)
+geth-miner-1         |    
+geth-miner-1         |     --crypto.kzg value                  (default: "gokzg")                 ($GETH_CRYPTO_KZG)
+geth-miner-1         |           KZG library implementation to use; gokzg (recommended) or ckzg
+geth-miner-1         |    
+geth-miner-1         |     --fdlimit value                     (default: 0)                       ($GETH_FDLIMIT)
+geth-miner-1         |           Raise the open file descriptor resource limit (default = system fd limit)
+geth-miner-1         | 
+geth-miner-1         |    STATE HISTORY MANAGEMENT
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --gcmode value                      (default: "full")                  ($GETH_GCMODE)
+geth-miner-1         |           Blockchain garbage collection mode, only relevant in state.scheme=hash ("full",
+geth-miner-1         |           "archive")
+geth-miner-1         |    
+geth-miner-1         |     --history.state value               (default: 90000)                   ($GETH_HISTORY_STATE)
+geth-miner-1         |           Number of recent blocks to retain state history for (default = 90,000 blocks, 0
+geth-miner-1         |           = entire chain)
+geth-miner-1         |    
+geth-miner-1         |     --history.transactions value        (default: 2350000)                 ($GETH_HISTORY_TRANSACTIONS)
+geth-miner-1         |           Number of recent blocks to maintain transactions index for (default = about one
+geth-miner-1         |           year, 0 = entire chain)
+geth-miner-1         |    
+geth-miner-1         |     --state.scheme value                                                   ($GETH_STATE_SCHEME)
+geth-miner-1         |           Scheme to use for storing ethereum state ('hash' or 'path')
+geth-miner-1         |    
+geth-miner-1         |     --syncmode value                    (default: snap)                    ($GETH_SYNCMODE)
+geth-miner-1         |           Blockchain sync mode ("snap" or "full")
+geth-miner-1         | 
+geth-miner-1         |    TRANSACTION POOL (BLOB)
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --blobpool.datacap value            (default: 2684354560)              ($GETH_BLOBPOOL_DATACAP)
+geth-miner-1         |           Disk space to allocate for pending blob transactions (soft limit)
+geth-miner-1         |    
+geth-miner-1         |     --blobpool.datadir value            (default: "blobpool")              ($GETH_BLOBPOOL_DATADIR)
+geth-miner-1         |           Data directory to store blob transactions in
+geth-miner-1         |    
+geth-miner-1         |     --blobpool.pricebump value          (default: 100)                     ($GETH_BLOBPOOL_PRICEBUMP)
+geth-miner-1         |           Price bump percentage to replace an already existing blob transaction
+geth-miner-1         | 
+geth-miner-1         |    TRANSACTION POOL (EVM)
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --txpool.accountqueue value         (default: 64)                      ($GETH_TXPOOL_ACCOUNTQUEUE)
+geth-miner-1         |           Maximum number of non-executable transaction slots permitted per account
+geth-miner-1         |    
+geth-miner-1         |     --txpool.accountslots value         (default: 16)                      ($GETH_TXPOOL_ACCOUNTSLOTS)
+geth-miner-1         |           Minimum number of executable transaction slots guaranteed per account
+geth-miner-1         |    
+geth-miner-1         |     --txpool.globalqueue value          (default: 1024)                    ($GETH_TXPOOL_GLOBALQUEUE)
+geth-miner-1         |           Maximum number of non-executable transaction slots for all accounts
+geth-miner-1         |    
+geth-miner-1         |     --txpool.globalslots value          (default: 5120)                    ($GETH_TXPOOL_GLOBALSLOTS)
+geth-miner-1         |           Maximum number of executable transaction slots for all accounts
+geth-miner-1         |    
+geth-miner-1         |     --txpool.journal value              (default: "transactions.rlp")      ($GETH_TXPOOL_JOURNAL)
+geth-miner-1         |           Disk journal for local transaction to survive node restarts
+geth-miner-1         |    
+geth-miner-1         |     --txpool.lifetime value             (default: 3h0m0s)                  ($GETH_TXPOOL_LIFETIME)
+geth-miner-1         |           Maximum amount of time non-executable transaction are queued
+geth-miner-1         |    
+geth-miner-1         |     --txpool.locals value                                                  ($GETH_TXPOOL_LOCALS)
+geth-miner-1         |           Comma separated accounts to treat as locals (no flush, priority inclusion)
+geth-miner-1         |    
+geth-miner-1         |     --txpool.nolocals                   (default: false)                   ($GETH_TXPOOL_NOLOCALS)
+geth-miner-1         |           Disables price exemptions for locally submitted transactions
+geth-miner-1         |    
+geth-miner-1         |     --txpool.pricebump value            (default: 10)                      ($GETH_TXPOOL_PRICEBUMP)
+geth-miner-1         |           Price bump percentage to replace an already existing transaction
+geth-miner-1         |    
+geth-miner-1         |     --txpool.pricelimit value           (default: 1)                       ($GETH_TXPOOL_PRICELIMIT)
+geth-miner-1         |           Minimum gas price tip to enforce for acceptance into the pool
+geth-miner-1         |    
+geth-miner-1         |     --txpool.rejournal value            (default: 1h0m0s)                  ($GETH_TXPOOL_REJOURNAL)
+geth-miner-1         |           Time interval to regenerate the local transaction journal
+geth-miner-1         | 
+geth-miner-1         |    VIRTUAL MACHINE
+geth-miner-1         | 
+geth-miner-1         |    
+geth-miner-1         |     --vmdebug                           (default: false)                   ($GETH_VMDEBUG)
+geth-miner-1         |           Record information useful for VM and contract debugging
+geth-miner-1         | 
+geth-miner-1         | 
+geth-miner-1         | COPYRIGHT:
+geth-miner-1         |    Copyright 2013-2024 The go-ethereum Authors
+geth-miner-1 exited with code 1
+geth-rpc-endpoint-1 exited with code 1

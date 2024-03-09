@@ -23,4 +23,7 @@
 LICENSE
 README.md
 **/.venv
-storage/
+
+# For python scripts setup mongo + geth server
+scripts/
+requirements.txt

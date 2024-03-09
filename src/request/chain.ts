@@ -30,7 +30,6 @@ const errorLog: ErrorRequestHandler = (
 class RequestChain {
     middlewares: RequestHandler[] = [];
     handler: RequestHandler;
-    errorHandler: ErrorRequestHandler = errorLog;
 
     constructor(handler: RequestHandler) {
         this.handler = handler;
@@ -50,7 +49,7 @@ class RequestChain {
     }
 
     export(): Middleware[] {
-        return [...this.middlewares, this.handler, this.errorHandler];
+        return [...this.middlewares, this.handler, errorLog];
     }
 }
 

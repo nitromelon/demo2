@@ -6,4 +6,3 @@ dist
 ./mongo
 ./data
 .venv
-storage
