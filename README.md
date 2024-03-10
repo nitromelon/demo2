@@ -10,3 +10,7 @@
   - Chạy file scripts/setup.ipynb để tạo username password và gán database.
 - Note chạy geth:
   - Chưa có lol!!!
+
+## Todo
+
+- [ ] Apply [redis](https://github.com/Asjas/prisma-redis-middleware) into prisma
