@@ -72,6 +72,7 @@ class InnoBE {
         // rewrite delete to del to avoid conflict with reserved keyword
         const { post, get, put, delete: del } = handlers;
 
+        path = `/api${path}`;
         this.app.post(path, post.export());
         this.app.get(`${path}/:id`, get.export());
         this.app.put(`${path}/:id`, put.export());

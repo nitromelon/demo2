@@ -14,3 +14,4 @@
 ## Todo
 
 - [ ] Apply [redis](https://github.com/Asjas/prisma-redis-middleware) into prisma
+- [ ] Read this [go ethereum](https://ethereum.stackexchange.com/questions/136894/how-to-connect-hardhat-to-my-own-private-geth-chain)
