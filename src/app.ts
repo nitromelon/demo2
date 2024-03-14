@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import InnoBE from "./request/request";
 import InnoDB from "./request/database";
 import Demo from "./app/demo";
+import InnoWeb3 from "./request/web3";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ if (!(backendPort && fronendPort)) {
 }
 
 InnoDB.getSelf();
+InnoWeb3.getSelf();
 
 InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .config()

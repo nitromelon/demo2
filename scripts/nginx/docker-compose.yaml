@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+    inno_nginx:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 80:80
+            - 443:443
+        restart: always
+        volumes:
+            # For best practice, use :ro aka read-only after docker's path
+            # For now, I will do nothing.
+            - nginx_conf:/etc/nginx/conf.d/
+            - cert:/etc/nginx/ssl/
+
+volumes:
+    nginx_conf:
+    cert:

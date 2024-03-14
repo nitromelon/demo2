@@ -12,5 +12,6 @@
     },
     "difficulty": "1",
     "gasLimit": "12000000",
+    "gasPrice": "0",
     "alloc": {}
 }
