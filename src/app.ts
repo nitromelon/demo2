@@ -17,6 +17,9 @@ if (!(backendPort && fronendPort)) {
 
 InnoDB.getSelf();
 
+// Todo:
+// InnoWeb3
+
 InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .config()
     .route("/page", new Demo())
