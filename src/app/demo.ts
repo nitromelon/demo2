@@ -2,10 +2,17 @@ import { Request, Response } from "express";
 import App from "./app";
 import RequestChain from "../request/chain";
 import checkJWT from "../middleware/jwt";
+// import { Err } from "ts-results";
+// import { ethers } from "ethers";
 
 export default class Demo extends App {
     override post = RequestChain.create(
         async (_req: Request, res: Response) => {
+            res.status(201).json({ message: "POST request to /page" });
+        }
+    )
+        .add_middleware(checkJWT)
+        .add_middleware(async (_req: Request, _res: Response, next: any) => {
             // await this.db.user.create({
             //     data: {
             //         id: Math.floor(Math.random() * 1000),
@@ -15,10 +22,20 @@ export default class Demo extends App {
             //     },
             // });
             // console.log(await this.db.user.findMany());
-
-            res.status(201).json({ message: "POST request to /page" });
-        }
-    ).add_middleware(checkJWT);
+            next();
+        })
+        .add_middleware(async (_req: Request, _res: Response, next: any) => {
+            // const result = this.web3.getBalanceOfAdmin();
+            // if (result instanceof Err) {
+            //     console.log(result.val);
+            // } else {
+            //     const bigNumber = await result.val;
+            //     // const balance = bigNumber.toString();
+            //     const balance = ethers.utils.formatEther(bigNumber);
+            //     console.log(balance);
+            // }
+            next();
+        });
 
     override get = RequestChain.create((req: Request, res: Response) => {
         res.status(200).json({

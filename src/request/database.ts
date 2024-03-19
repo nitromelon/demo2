@@ -1,16 +1,16 @@
 // Note: every sub-app will have to extend App to get the database connection
-
+import { Option, Some, None } from "ts-results";
 import { PrismaClient } from "@prisma/client";
 
 class InnoDB {
-    static self: InnoDB | null = null;
+    static self: Option<InnoDB> = None;
     prisma: PrismaClient = new PrismaClient();
 
     static getSelf(): InnoDB {
-        if (InnoDB.self === null) {
-            InnoDB.self = new InnoDB();
+        if (InnoDB.self === None) {
+            InnoDB.self = Some(new InnoDB());
         }
-        return InnoDB.self;
+        return InnoDB.self.unwrap();
     }
 
     getDB(): PrismaClient {
