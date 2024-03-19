@@ -1,19 +1,14 @@
 {
     "config": {
-        "chainId": 9999,
+        "chainId": 1214,
         "homesteadBlock": 0,
         "eip150Block": 0,
-        "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "eip155Block": 0,
         "eip158Block": 0,
         "byzantiumBlock": 0,
         "constantinopleBlock": 0,
         "petersburgBlock": 0,
-        "istanbulBlock": 0,
-        "clique": {
-            "period": 5,
-            "epoch": 30000
-        }
+        "ethash": {}
     },
     "difficulty": "1",
     "gasLimit": "12000000",
