@@ -25,6 +25,7 @@ README.md
 **/.venv
 
 prisma/
+hardhat/
 
 # For python scripts setup mongo + geth server
 scripts/

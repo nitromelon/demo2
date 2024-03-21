@@ -4,6 +4,7 @@ import InnoBE from "./request/request";
 import InnoDB from "./request/database";
 import Demo from "./app/demo";
 import InnoWeb3 from "./request/web3";
+import Wallets from "./app/wallets";
 
 dotenv.config();
 
@@ -22,11 +23,14 @@ if (!(backendPort && fronendPort && gethURL && gethPort && adminPrivateKey)) {
 InnoDB.getSelf();
 
 InnoWeb3.getSelf()
-    .withURL(gethURL, parseInt(gethPort))
+    .withURL(gethURL, gethPort)
     .withAdminPrivateKey(adminPrivateKey);
 
 InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .config()
+    .route("/wallets", new Wallets())
+    // .route("/signup", new Demo()) // post request with username and password
+    // .route("/login", new Demo())
     .route("/page", new Demo())
     .catch()
     .start();

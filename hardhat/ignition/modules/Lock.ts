@@ -1,18 +1,14 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
-import { parseEther } from "viem";
 
-const JAN_1ST_2030 = 1893456000;
-const ONE_GWEI: bigint = parseEther("0.001");
+const HelloWorldModule = buildModule("HelloWorldModule", (m) => {
+    const greeting = m.getParameter("greeting", "Hello World!");
+    const a = m.getParameter("a", 0n);
+    const b = m.getParameter("b", 0n);
+    const count = m.getParameter("count", 0n);
 
-const LockModule = buildModule("LockModule", (m) => {
-    const unlockTime = m.getParameter("unlockTime", JAN_1ST_2030);
-    const lockedAmount = m.getParameter("lockedAmount", ONE_GWEI);
+    const helloWorld = m.contract("HelloWorld", [greeting, a, b, count]);
 
-    const lock = m.contract("Lock", [unlockTime], {
-        value: lockedAmount,
-    });
-
-    return { lock };
+    return { helloWorld };
 });
 
-export default LockModule;
+export default HelloWorldModule;

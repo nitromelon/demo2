@@ -1,6 +1,10 @@
 import { Option, Some, None, Result, Err, Ok } from "ts-results";
-import { JsonRpcProvider } from "@ethersproject/providers";
-import { BigNumber, Wallet } from "ethers";
+import { BigNumberish, JsonRpcProvider, Wallet } from "ethers";
+
+type newWallet = {
+    address: string;
+    privateKey: string;
+};
 
 // public address store in database
 // private key to not store in database
@@ -18,7 +22,7 @@ class InnoWeb3 {
         return InnoWeb3.self.unwrap();
     }
 
-    withURL(rpcURL: string, port: number): InnoWeb3 {
+    withURL(rpcURL: string, port: string): InnoWeb3 {
         const url = `http://${rpcURL}:${port}`;
         this.rpc = Some(new JsonRpcProvider(url));
         return this;
@@ -37,7 +41,19 @@ class InnoWeb3 {
         return Ok(new Wallet(privateKey, this.rpc.unwrap()));
     }
 
-    getBalance(address: string): Result<Promise<BigNumber>, string> {
+    createWallet(): Result<newWallet, string> {
+        if (this.rpc === None) {
+            return Err("rpc has not been initialized yet.");
+        }
+
+        const wallet = Wallet.createRandom().connect(this.rpc.unwrap());
+        const address = wallet.address;
+        const privateKey = wallet.privateKey;
+
+        return Ok({ address, privateKey });
+    }
+
+    getBalance(address: string): Result<Promise<BigNumberish>, string> {
         if (this.rpc === None) {
             return Err("rpc has not been initialized yet.");
         }
@@ -45,9 +61,9 @@ class InnoWeb3 {
         return Ok(this.rpc.unwrap().getBalance(address));
     }
 
-    getBalanceOfAdmin(): Result<Promise<BigNumber>, string> {
+    getBalanceOfAdmin(): Result<Promise<BigNumberish>, string> {
         if (this.adminPrivateKey === None) {
-            return Err("adminPrivateKey has not been initialized yet.");
+            return Err("admin private key has not been initialized yet.");
         }
 
         return this.getBalance(
