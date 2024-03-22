@@ -1,5 +1,5 @@
 import { Option, Some, None, Result, Err, Ok } from "ts-results";
-import { BigNumberish, JsonRpcProvider, Wallet } from "ethers";
+import { JsonRpcProvider, TransactionResponse, Wallet } from "ethers";
 
 type newWallet = {
     address: string;
@@ -12,7 +12,7 @@ type newWallet = {
 class InnoWeb3 {
     static self: Option<InnoWeb3> = None;
     rpc: Option<JsonRpcProvider> = None;
-    adminPrivateKey: Option<string> = None;
+    adminWallet: Option<Wallet> = None;
 
     static getSelf(): InnoWeb3 {
         if (InnoWeb3.self === None) {
@@ -29,7 +29,7 @@ class InnoWeb3 {
     }
 
     withAdminPrivateKey(privateKey: string): InnoWeb3 {
-        this.adminPrivateKey = Some(privateKey);
+        this.adminWallet = Some(this.getWallet(privateKey).unwrap());
         return this;
     }
 
@@ -53,22 +53,25 @@ class InnoWeb3 {
         return Ok({ address, privateKey });
     }
 
-    getBalance(address: string): Result<Promise<BigNumberish>, string> {
+    async getBalance(address: string): Promise<Result<bigint, string>> {
         if (this.rpc === None) {
             return Err("rpc has not been initialized yet.");
         }
 
-        return Ok(this.rpc.unwrap().getBalance(address));
+        return Ok(await this.rpc.unwrap().getBalance(address));
     }
 
-    getBalanceOfAdmin(): Result<Promise<BigNumberish>, string> {
-        if (this.adminPrivateKey === None) {
-            return Err("admin private key has not been initialized yet.");
+    async transfer(
+        from: Wallet,
+        to: string,
+        amount: bigint
+    ): Promise<Result<TransactionResponse, string>> {
+        if (this.rpc === None) {
+            return Err("rpc has not been initialized yet.");
         }
 
-        return this.getBalance(
-            this.getWallet(this.adminPrivateKey.unwrap()).unwrap().address
-        );
+        //! Caution: Turn on geth miner in order to process the transaction
+        return Ok(await from.sendTransaction({ to, value: amount }));
     }
 }
 

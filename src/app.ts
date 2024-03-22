@@ -4,7 +4,9 @@ import InnoBE from "./request/request";
 import InnoDB from "./request/database";
 import Demo from "./app/demo";
 import InnoWeb3 from "./request/web3";
-import Wallets from "./app/wallets";
+import Wallet from "./app/wallet";
+import WalletSend from "./app/wallet_send";
+import User from "./app/user";
 
 dotenv.config();
 
@@ -28,9 +30,9 @@ InnoWeb3.getSelf()
 
 InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .config()
-    .route("/wallets", new Wallets())
-    // .route("/signup", new Demo()) // post request with username and password
-    // .route("/login", new Demo())
+    .route("/wallet", new Wallet())
+    .route("/wallet/transactions", new WalletSend())
+    .route("/user", new User())
     .route("/page", new Demo())
     .catch()
     .start();

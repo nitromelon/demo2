@@ -25,3 +25,19 @@
 
 - [ ] Apply [redis](https://github.com/Asjas/prisma-redis-middleware) into prisma
 - [ ] Read this [go ethereum](https://ethereum.stackexchange.com/questions/136894/how-to-connect-hardhat-to-my-own-private-geth-chain)
+
+## API
+
+- wallet/
+  - POST /api/wallet: Create a new wallet
+    - Result (201): { "address": "0x1234", "privateKey": "0x1234" }
+  - GET /api/wallet/{wallet address}: Show wallet balance
+    - Result (200): { "balance": 100 }
+  - PUT /api/wallet/{wallet address}: Update wallet balance
+    - Body: { "amount": 100 }
+    - Result (204): No content
+
+- wallet/transactions
+  - POST /api/wallet/transactions: Send money from one wallet to another
+    - Body: { "from": "0x1234", "to": "0x5678", "amount": 100 }
+    - Result (200): Have content but unnecessary

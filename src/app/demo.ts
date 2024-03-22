@@ -9,6 +9,10 @@ export default class Demo extends App {
         res.status(201).json({ message: "POST request to /page" });
     })
         .add_middleware(checkJWT)
+        .add_middleware(async (req, _res, next) => {
+            console.log(req);
+            next();
+        })
         .add_middleware(async (_req, _res, next) => {
             // await this.db.user.create({
             //     data: {
@@ -19,6 +23,21 @@ export default class Demo extends App {
             //     },
             // });
             // console.log(await this.db.user.findMany());
+            console.log("middleware 1");
+            // await this.db.product.create({
+            //     data: {
+            //         name: `product${Math.floor(Math.random() * 1000)}`,
+            //         price: 100,
+            //         description: `description${Math.floor(
+            //             Math.random() * 1000
+            //         )}`,
+            //         category: `category${Math.floor(Math.random() * 1000)}`,
+            //         priceHistory: Array(10).fill(
+            //             Math.floor(Math.random() * 1000)
+            //         ),
+            //     },
+            // });
+            // console.log(await this.db.product.findMany());
             next();
         })
         .add_middleware(async (_req, _res, next) => {

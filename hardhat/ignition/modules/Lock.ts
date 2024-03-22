@@ -1,14 +1,17 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
-const HelloWorldModule = buildModule("HelloWorldModule", (m) => {
-    const greeting = m.getParameter("greeting", "Hello World!");
-    const a = m.getParameter("a", 0n);
-    const b = m.getParameter("b", 0n);
-    const count = m.getParameter("count", 0n);
+const JAN_1ST_2030 = 1893456000;
+const ONE_GWEI: bigint = 1_000_000_000n;
 
-    const helloWorld = m.contract("HelloWorld", [greeting, a, b, count]);
+const LockModule = buildModule("LockModule", (m) => {
+  const unlockTime = m.getParameter("unlockTime", JAN_1ST_2030);
+  const lockedAmount = m.getParameter("lockedAmount", ONE_GWEI);
 
-    return { helloWorld };
+  const lock = m.contract("Lock", [unlockTime], {
+    value: lockedAmount,
+  });
+
+  return { lock };
 });
 
-export default HelloWorldModule;
+export default LockModule;
