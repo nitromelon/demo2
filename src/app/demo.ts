@@ -10,7 +10,7 @@ export default class Demo extends App {
     })
         .add_middleware(checkJWT)
         .add_middleware(async (req, _res, next) => {
-            console.log(req);
+            console.log(req.auth);
             next();
         })
         .add_middleware(async (_req, _res, next) => {
@@ -37,7 +37,8 @@ export default class Demo extends App {
             //         ),
             //     },
             // });
-            // console.log(await this.db.product.findMany());
+            console.log(await this.db.user.findMany());
+            console.log(await this.db.product.findMany());
             next();
         })
         .add_middleware(async (_req, _res, next) => {

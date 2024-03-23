@@ -15,11 +15,16 @@ datasource db {
 
 model User {
     id       String  @id @default(uuid()) @map("_id")
-    sub      String  @unique // sub = subject of the JWT token
+    sub      String  @unique  // sub = subject of the JWT token
     username String  @unique
     email    String  @unique
     // password String
     // fullName String?
+}
+
+enum ProductStatus {
+    SALE
+    SOLD
 }
 
 model Product {
@@ -28,7 +33,7 @@ model Product {
     description  String
     price        Float
     image        String?
-    category     String
+    // category     String
     createdAt    DateTime  @default(now())
     updatedAt    DateTime  @updatedAt
     Category     Category? @relation(fields: [categoryId], references: [id])

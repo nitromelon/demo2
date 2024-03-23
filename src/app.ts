@@ -7,6 +7,7 @@ import InnoWeb3 from "./request/web3";
 import Wallet from "./app/wallet";
 import WalletSend from "./app/wallet_send";
 import User from "./app/user";
+// import UploadContent from "./app/upload_content/upload_content";
 
 dotenv.config();
 
@@ -33,6 +34,8 @@ InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .route("/wallet", new Wallet())
     .route("/wallet/transactions", new WalletSend())
     .route("/user", new User())
+    // .route("/upload_content", new UploadContent()) // <- This one is to upload from json to mongodb
+    .route("/gallery", new Demo())
     .route("/page", new Demo())
     .catch()
     .start();
