@@ -1,5 +1,12 @@
 import { Option, Some, None, Result, Err, Ok } from "ts-results";
-import { JsonRpcProvider, TransactionResponse, Wallet } from "ethers";
+import {
+    BaseContractMethod,
+    JsonRpcProvider,
+    TransactionResponse,
+    Wallet,
+    ethers,
+} from "ethers";
+import { Contract } from "ethers";
 
 type newWallet = {
     address: string;
@@ -12,6 +19,11 @@ type newWallet = {
 class InnoWeb3 {
     static self: Option<InnoWeb3> = None;
     rpc: Option<JsonRpcProvider> = None;
+    // etherscanProvider = new CustomEtherscanProvider();
+    smartContract: Option<{
+        address: string;
+        abi: any[];
+    }> = None;
     adminWallet: Option<Wallet> = None;
 
     static getSelf(): InnoWeb3 {
@@ -33,12 +45,31 @@ class InnoWeb3 {
         return this;
     }
 
+    withSmartContract(address: string, abi: any[]): InnoWeb3 {
+        this.smartContract = Some({ address, abi });
+        return this;
+    }
+
     getWallet(privateKey: string): Result<Wallet, string> {
         if (this.rpc === None) {
             return Err("rpc has not been initialized yet.");
         }
 
         return Ok(new Wallet(privateKey, this.rpc.unwrap()));
+    }
+
+    getSmartContract(signer: Wallet): Result<Contract, string> {
+        if (this.smartContract === None) {
+            return Err("smart contract has not been initialized yet.");
+        }
+
+        return Ok(
+            new Contract(
+                this.smartContract.unwrap().address,
+                this.smartContract.unwrap().abi,
+                signer
+            )
+        );
     }
 
     createWallet(): Result<newWallet, string> {
@@ -65,14 +96,41 @@ class InnoWeb3 {
         from: Wallet,
         to: string,
         amount: bigint
-    ): Promise<Result<TransactionResponse, string>> {
-        if (this.rpc === None) {
-            return Err("rpc has not been initialized yet.");
+    ): Promise<TransactionResponse> {
+        //! Caution: Turn on geth miner in order to process the transaction
+        return await from.sendTransaction({ to, value: amount });
+    }
+
+    async setPurchase(
+        from: Contract, // this is the one who get the product, and thus, send the money
+        to: string, // this is the one who sell the product, and thus, receive the money
+        product_id: string // this is the product id
+    ): Promise<Option<BaseContractMethod<any[], any, any>>> {
+        const purchase = from["makePurchase"];
+        if (purchase === undefined) {
+            return None;
         }
 
-        //! Caution: Turn on geth miner in order to process the transaction
-        return Ok(await from.sendTransaction({ to, value: amount }));
+        return await purchase(product_id, to, {
+            gasPrice: ethers.parseUnits("500", "gwei"),
+        });
     }
+
+    async getPurchaseCount(
+        from: Contract
+    ): Promise<Option<BaseContractMethod<any[], any, any>>> {
+        const count = from["getUserPurchases"];
+        if (count === undefined) {
+            return None;
+        }
+
+        return count();
+    }
+
+    // wait till the transaction is mined
+    // async waitTransaction(transaction: TransactionResponse): Promise<void> {
+    //     await transaction.wait();
+    // }
 }
 
 export default InnoWeb3;

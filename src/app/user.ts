@@ -44,7 +44,6 @@ export default class User extends App {
         res.status(200).json(user);
     }).add_middleware(checkJWT);
 
-    // TODO: update user info
     override put = RequestChain.create(async (req, res) => {
         // update user info with info in req.body
         const sub = req.auth?.payload.sub;
@@ -52,6 +51,18 @@ export default class User extends App {
         const email: string | undefined = req.body.email;
         if (!sub || !username || !email) {
             res.status(401).json({ message: "Unauthorized" });
+            return;
+        }
+
+        const user_data = await this.db.user.findUnique({ where: { sub } });
+
+        if (!user_data ) {
+            res.status(404).json({ message: "User not found" });
+            return;
+        }
+
+        if (user_data.username === username && user_data.email === email) {
+            res.status(200).json(user_data);
             return;
         }
 
@@ -64,7 +75,6 @@ export default class User extends App {
         res.status(200).json(user);
     }).add_middleware(checkJWT);
 
-    // TODO: delete user
     override delete = RequestChain.create(async (req, res) => {
         // delete user with JWT
         const sub = req.auth?.payload.sub;
@@ -73,7 +83,7 @@ export default class User extends App {
             return;
         }
 
-        const user = await this.db.user.delete({ where: { sub } });
-        res.status(200).json(user);
+        await this.db.user.delete({ where: { sub } });
+        res.status(204).end();
     }).add_middleware(checkJWT);
 }

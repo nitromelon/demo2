@@ -42,9 +42,12 @@
     - Body: { "from": "0x1234", "to": "0x5678", "amount": 100 }
     - Result (200): Have content but unnecessary
 
-- user
+- user/
   - POST /api/user: Create a new user
     - Body: { "name": "John Doe", "email": "<abc@abc.com>" }
     - Result (201): { "id": 1, "sub": "id dinh danh", "name": "John Doe", "email": "<abc@abc.com>" }
   - GET /api/user/{id}: Get user by id
     - Result (200): { "id": 1, "sub": "id dinh danh", "name": "John Doe", "email": "<abc@abc.com>" }
+
+- gallery/
+  

@@ -19,6 +19,8 @@
         "noUnusedParameters": true,
         "isolatedModules": true,
         "checkJs": true,
-        "noImplicitAny": true
-    }
+        "noImplicitAny": true,
+        "resolveJsonModule": true
+    },
+    "files": ["./hardhat/hardhat.config.ts"]
 }

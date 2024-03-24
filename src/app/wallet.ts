@@ -5,7 +5,29 @@ import App from "./app";
 import { ethers } from "ethers";
 
 export default class Wallet extends App {
-    override post = RequestChain.create(async (_req, res) => {
+    override post = RequestChain.create(async (req, res) => {
+        const sub = req.auth?.payload.sub;
+        if (sub === undefined) {
+            res.status(401).json({ error: "Unauthorized" });
+            return;
+        }
+
+        const user = await this.db.user.findUnique({
+            where: {
+                sub: sub,
+            },
+        });
+
+        if (user === null) {
+            res.status(404).json({ error: "User not found" });
+            return;
+        }
+
+        if (user.walletAddress !== null) {
+            res.status(409).json({ error: "Wallet already exists" });
+            return;
+        }
+
         const wallet = this.web3.createWallet();
 
         if (wallet instanceof Err) {
@@ -14,7 +36,17 @@ export default class Wallet extends App {
             return;
         }
 
-        res.status(201).json(wallet.val);
+        const wallet_info = wallet.val;
+        await this.db.user.update({
+            where: {
+                sub: sub,
+            },
+            data: {
+                walletAddress: wallet_info.address,
+            },
+        });
+
+        res.status(201).json(wallet_info);
     }).add_middleware(checkJWT);
 
     override get = RequestChain.create(async (req, res) => {
@@ -33,7 +65,7 @@ export default class Wallet extends App {
 
         const balance = get_balance.val;
         res.status(200).json({ balance: ethers.formatEther(balance) });
-    }).add_middleware(checkJWT);
+    });
 
     override put = RequestChain.create(async (req, res) => {
         const address = req.params["id"];
@@ -41,6 +73,28 @@ export default class Wallet extends App {
 
         if (typeof address !== "string" || typeof amount !== "string") {
             res.status(400).json({ error: "Bad Request" });
+            return;
+        }
+
+        const sub = req.auth?.payload.sub;
+        if (sub === undefined) {
+            res.status(401).json({ error: "Unauthorized" });
+            return;
+        }
+
+        const user = await this.db.user.findUnique({
+            where: {
+                sub: sub,
+            },
+        });
+
+        if (user === null) {
+            res.status(404).json({ error: "User not found" });
+            return;
+        }
+
+        if (user.walletAddress !== address) {
+            res.status(403).json({ error: "Forbidden" });
             return;
         }
 
@@ -67,17 +121,7 @@ export default class Wallet extends App {
             return;
         }
 
-        const transfer = this.web3.transfer(
-            admin_wallet.unwrap(),
-            address,
-            amount_in_wei
-        );
-
-        if (transfer instanceof Err) {
-            console.error(transfer.val);
-            res.status(500).json({ error: "Internal Server Error" });
-            return;
-        }
+        await this.web3.transfer(admin_wallet.unwrap(), address, amount_in_wei);
 
         res.status(204).end();
     }).add_middleware(checkJWT);
