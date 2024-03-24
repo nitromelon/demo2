@@ -6,6 +6,7 @@ type RelatedProduct = {
     id: string;
     title: string;
     price: number;
+    priceHistory: number[];
     image: string;
 }[];
 
@@ -41,6 +42,7 @@ export default class ProductRelated extends App {
                         name: true,
                         description: true,
                         price: true,
+                        priceHistory: true,
                         image: true,
                     },
                     where: {
@@ -64,6 +66,7 @@ export default class ProductRelated extends App {
                     id: product.id,
                     title: product.name,
                     price: product.price,
+                    priceHistory: product.priceHistory,
                     image: product.image ?? "",
                 });
             });

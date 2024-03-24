@@ -1,0 +1,181 @@
+trang home:
+(xem sản phẩm trang home)
+post localhost:8080/api/gallery/
+{
+    categories: string[];
+    header: {
+        id: string;
+        title: string;
+        image: string; // for now: localhost + url
+        price: number;
+        priceHistory: number[];
+    }[];
+    body: {
+        category: string;
+        data: {
+            id: string;
+            title: string;
+            image: string;
+            price: number;
+            priceHistory: number[];
+        }[];
+    }[];
+};
+
+---
+trang gallery:
+(xem sản phẩm trong mục)
+get localhost:8080/api/gallery/<mục trong categories>
+{
+    category: string;
+    data: {
+        id: string;
+        title: string;
+        image: string;
+        price: number;
+        priceHistory: number[];
+    }[];
+};
+
+(tổng số trang sản phẩm trong mục)
+post localhost:8080/api/gallery/<mục trong categories>
+{
+    count: number;
+}
+
+(xem sản phẩm trong mục, phân trang)
+get localhost:8080/api/gallery/<mục trong categories>/<số trang, bắt đầu từ 1>
+{
+    category: string;
+    data: {
+        id: string;
+        title: string;
+        image: string;
+        price: number;
+        priceHistory: number[];
+    }[];
+};
+
+---
+trang gallery (sản phẩm chi tiết)
+(xem thông tin sản phẩm)
+get localhost:8080/api/product/<mã id sản phẩm>
+{
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    image: string; (them localhost truoc string)
+    status: "SALE" hoặc "SOLD". SOLD thì disable nút mua
+    createdAt: Date;
+    updatedAt: Date;
+    priceHistory: number[];
+    Provider: {
+        name: string
+    };
+    Category: {
+        name: string
+    };
+}
+
+(xem sản phẩm liên quan)
+post localhost:8080/api/product/<mã id sản phẩm>/related
+{
+    id: string;
+    title: string;
+    price: number;
+    priceHistory: number[];
+    image: string; (them localhost truoc string)
+}[];
+
+(mua sản phẩm)
+put localhost:8080/api/product/<mã id sản phẩm>
+body: {
+    "private_key": string, (Nhắc người dùng nhập)
+}
+
+result: {
+  "message": "Success"
+}
+
+---
+user
+(tạo tài khoản đăng ký)
+post localhost:8080/api/user
+body: {
+    sub: string;
+    username: string;
+    email: string;
+}
+
+result: {
+    id: string;
+    sub: string;
+    username: string;
+    email: string;
+    walletAddress: "" (null);
+}
+
+(đăng nhập)
+get localhost:8080/api/user/<id>
+{
+    id: string;
+    sub: string;
+    username: string;
+    email: string;
+    walletAddress: string; (rỗng là null, có là string)
+}
+
+(update thông tin tài khoản)
+put localhost:8080/api/user/<id> (update)
+body: {
+    username: string;
+    email: string;
+}
+
+result: {
+    id: string;
+    sub: string;
+    username: string;
+    email: string;
+    walletAddress: string; (rỗng là null, có là string)
+}
+
+(xóa tài khoản)
+delete localhost:8080/api/user/<id>
+status 204 no content
+
+---
+user (tạo ví)
+(tạo ví)
+post localhost:8080/api/wallet
+{
+    "address": string;
+    "private_key": string; (Nhắc người dùng giữ)
+}
+
+(check tiền trong ví)
+get localhost:8080/api/wallet/<address>
+{
+    "balance": number;
+}
+
+(nạp tiền vào ví)
+put localhost:8080/api/wallet/<address>
+body: {
+    amount: number;
+    private_key: string
+}
+
+result: 204 no content
+
+---
+user (lịch sử giao dịch)
+(đọc lịch sử giao dịch)
+get localhost:8080/api/wallet/transactions/<private_key>
+{
+    product_id: string;
+    time: Date;
+    from: string;
+    to: string;
+}[]

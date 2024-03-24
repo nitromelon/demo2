@@ -9,7 +9,7 @@ import { ProductStatus } from "@prisma/client";
 dotenv.config();
 
 export default class Product extends App {
-    // Show 20 products of a category per page
+    // Get product info
     override get = RequestChain.create(async (req, res) => {
         const product_id = req.params["id"];
         if (product_id === undefined) {
