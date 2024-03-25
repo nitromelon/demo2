@@ -41,7 +41,8 @@ class InnoBE {
     config(): InnoBE {
         this.app.use(
             cors({
-                origin: `http://localhost:${this.frontendPort}`,
+                // origin: `http://localhost:${this.frontendPort}`,
+                origin: `*`,
                 credentials: true,
             })
         );

@@ -57,7 +57,7 @@
   - `scripts`
     - open folder `geth` inside
       - run `docker-compose up --build --wait` to start geth
-      - Note that you may experience some lagging due to geth miner is running.
+      - Note that you may experience some lagging because geth miner is running.
       - Now run the second half of the script in `setup_geth.ipynb`
     - open folder `mongo`
       - run `docker-compose up --build --wait` to start mongodb

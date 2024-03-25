@@ -56,7 +56,7 @@ export default class User extends App {
 
         const user_data = await this.db.user.findUnique({ where: { sub } });
 
-        if (!user_data ) {
+        if (!user_data) {
             res.status(404).json({ message: "User not found" });
             return;
         }

@@ -33,7 +33,10 @@ export default class Product extends App {
             return;
         }
 
-        res.status(200).json(product);
+        const fix1 = product as any;
+        fix1.title = product.name;
+
+        res.status(200).json(fix1);
     });
 
     // Update product, buy by who, who will get money, who will send money etc

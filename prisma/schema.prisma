@@ -18,7 +18,7 @@ model User {
     sub      String @unique // sub = subject of the JWT token
     username String @unique
     email    String @unique
-    walletAddress String? @unique
+    walletAddress String?
 }
 
 enum ProductStatus {
