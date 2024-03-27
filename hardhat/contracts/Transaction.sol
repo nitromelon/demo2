@@ -7,6 +7,7 @@ contract Transaction {
         uint256 purchasedTime;
         address purchaser;
         address seller;
+        string price;
     }
 
     struct User {
@@ -20,20 +21,22 @@ contract Transaction {
         address indexed purchaser,
         address indexed seller,
         string itemID,
-        uint256 purchasedTime
+        uint256 purchasedTime,
+        string price
     );
 
-    function makePurchase(string memory _itemID, address _seller) public {
+    function makePurchase(string memory _itemID, address _seller, string memory _price) public {
         purchases[msg.sender].push(
             Purchase({
                 itemID: _itemID,
                 purchasedTime: block.timestamp,
                 purchaser: msg.sender,
-                seller: _seller
+                seller: _seller,
+                price: _price
             })
         );
 
-        emit PurchaseMade(msg.sender, _seller, _itemID, block.timestamp);
+        emit PurchaseMade(msg.sender, _seller, _itemID, block.timestamp, _price);
     }
 
     function getUserPurchases() public view returns (Purchase[] memory) {

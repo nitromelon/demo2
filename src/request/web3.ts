@@ -104,14 +104,15 @@ class InnoWeb3 {
     async setPurchase(
         from: Contract, // this is the one who get the product, and thus, send the money
         to: string, // this is the one who sell the product, and thus, receive the money
-        product_id: string // this is the product id
+        product_id: string, // this is the product id
+        price: string,
     ): Promise<Option<BaseContractMethod<any[], any, any>>> {
         const purchase = from["makePurchase"];
         if (purchase === undefined) {
             return None;
         }
 
-        return await purchase(product_id, to, {
+        return await purchase(product_id, to, price,{
             gasPrice: ethers.parseUnits("500", "gwei"),
         });
     }

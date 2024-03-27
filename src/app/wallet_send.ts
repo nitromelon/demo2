@@ -10,6 +10,7 @@ type ModifiedSmartContractTransaction = {
     time: Date;
     from: string;
     to: string;
+    paid_price: string;
 }[];
 
 export default class WalletSend extends App {
@@ -97,6 +98,7 @@ export default class WalletSend extends App {
                 time: new Date(Number(transaction[1]) * 1000),
                 from: transaction[2] as string,
                 to: transaction[3] as string,
+                paid_price: transaction[4] as string,
             })
         );
 

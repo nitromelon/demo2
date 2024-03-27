@@ -160,7 +160,8 @@ export default class Product extends App {
         const purchase = await this.web3.setPurchase(
             smartContract.val,
             to,
-            product_id
+            product_id,
+            amount.price.toString()
         );
 
         if (purchase === None) {

@@ -69,12 +69,14 @@ export default class Wallet extends App {
 
     override put = RequestChain.create(async (req, res) => {
         const address = req.params["id"];
-        const amount = req.body.amount;
+        const amount1 = req.body.amount;
 
-        if (typeof address !== "string" || typeof amount !== "string") {
+        if (typeof address !== "string" || typeof amount1 !== "number") {
             res.status(400).json({ error: "Bad Request" });
             return;
         }
+
+        const amount = amount1.toString();
 
         const sub = req.auth?.payload.sub;
         if (sub === undefined) {
