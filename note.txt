@@ -179,3 +179,15 @@ get localhost:8080/api/wallet/transactions/<private_key>
     from: string;
     to: string;
 }[]
+
+// Ném event sau khi receipt có để notìication cho người dùng + mark completed
+1  Account
+2      User
+3      Admin
+4      ShoppingCartManager
+5      productManager
+6  Product
+7  ShoppingCart
+8  Order (event when user press buy)
+9  Payment (event when user pay)
+10 Receipt

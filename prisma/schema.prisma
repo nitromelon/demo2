@@ -13,61 +13,111 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-enum UserRole {
-    ADMIN
-    USER
+model Account {
+    id                  String                @id @default(uuid()) @map("_id")
+    username            String                @unique
+    password            String // hashed password
+    email               String                @unique
+    User                User[]
+    Admin               Admin[]
+    ShoppingCartManager ShoppingCartManager[]
+    ProductManager      ProductManager[]
 }
 
 model User {
-    id       String @id @default(uuid()) @map("_id")
-    sub      String @unique // sub = subject of the JWT token
-    username String @unique
-    email    String @unique
-    walletAddress String?
-    role     UserRole @default(USER)
+    id           String         @id @default(uuid()) @map("_id")
+    info         Account        @relation(fields: [accountId], references: [id])
+    accountId    String
+    ShoppingCart ShoppingCart[]
+    Order        Order[]
 }
 
-enum ProductStatus {
-    SALE
-    SOLD
+model Admin {
+    id                  String                @id @default(uuid()) @map("_id")
+    info                Account               @relation(fields: [accountId], references: [id])
+    accountId           String
+    shoppingCartManager ShoppingCartManager[]
+    ProductManager      ProductManager[]
+}
+
+model ShoppingCartManager {
+    id           String         @id @default(uuid()) @map("_id")
+    accountId    String
+    info         Account        @relation(fields: [accountId], references: [id])
+    shoppingCart ShoppingCart[]
+    adminId      String
+    admin        Admin          @relation(fields: [adminId], references: [id])
+}
+
+// they have write access to products
+model ProductManager {
+    id        String    @id @default(uuid()) @map("_id")
+    accountId String
+    info      Account   @relation(fields: [accountId], references: [id])
+    products  Product[]
+    adminId   String
+    admin     Admin     @relation(fields: [adminId], references: [id])
 }
 
 model Product {
-    id           String    @id @default(uuid()) @map("_id")
-    name         String
-    description  String
-    price        Float
-    image        String?
-    status       ProductStatus @default(SALE)
-    createdAt    DateTime  @default(now())
-    updatedAt    DateTime  @updatedAt
-    Category     Category? @relation(fields: [categoryId], references: [id])
-    categoryId   String?
-    Provider     Provider? @relation(fields: [providerId], references: [id])
-    providerId   String?
-    priceHistory Float[]
+    id               String         @id @default(uuid()) @map("_id")
+    name             String
+    description      String
+    price            Float
+    image            String?
+    createdAt        DateTime       @default(now())
+    updatedAt        DateTime       @updatedAt
+    carts            ShoppingCart[]
+    orders           Order[]
+    productManagerId String
+    productManager   ProductManager @relation(fields: [productManagerId], references: [id])
 }
 
-model Category {
-    id       String    @id @default(uuid()) @map("_id")
-    name     String
-    products Product[]
+model ShoppingCart {
+    id        String              @id @default(uuid()) @map("_id")
+    productId String
+    quantity  Int
+    product   Product             @relation(fields: [productId], references: [id])
+    userId    String
+    user      User                @relation(fields: [userId], references: [id])
+    managerId String
+    manager   ShoppingCartManager @relation(fields: [managerId], references: [id])
 }
 
-model Provider {
-    id       String    @id @default(uuid()) @map("_id")
-    name     String
-    products Product[]
+enum OrderStatus {
+    PENDING
+    PROCESSING
+    DELIVERED
+    CANCELLED
 }
 
-// model Transaction {
-//   id        Int      @id @map("_id")
-//   userId    Int
-//   productId Int
-//   total     Float
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
+model Order {
+    id        String      @id @default(uuid()) @map("_id")
+    productId String
+    quantity  Int
+    product   Product     @relation(fields: [productId], references: [id])
+    status    OrderStatus @default(PENDING)
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
+    userId    String
+    user      User        @relation(fields: [userId], references: [id])
+    payment   Payment[]
+    receipt   Receipt[]
+}
 
-//   user    User    @relation(fields: [userId], references: [id])
-//   product Product @relation(fields: [productId], references: [id])
-// }
+// This is proof of concept for future use
+model Payment {
+    id        String   @id @default(uuid()) @map("_id")
+    orderId   String
+    order     Order    @relation(fields: [orderId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Receipt {
+    id        String   @id @default(uuid()) @map("_id")
+    orderId   String
+    order     Order    @relation(fields: [orderId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

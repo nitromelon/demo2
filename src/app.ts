@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import InnoBE from "./request/request";
 import InnoDB from "./request/database";
 import Demo from "./app/demo";
+// import UserID from "./app/user_id";
+import User from "./app/user";
 
 dotenv.config();
 
@@ -34,5 +36,7 @@ InnoDB.getSelf();
 InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .config()
     .route("/demo", new Demo())
+    .route("/user", new User())
+    // .route("/user/id", new UserID())
     .catch()
     .start();

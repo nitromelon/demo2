@@ -6,8 +6,8 @@ import InnoWeb3 from "../request/web3";
 
 class App implements CRUD {
     // Database and Geth connection
-    db: PrismaClient = InnoDB.getSelf().getDB();
-    web3: InnoWeb3 = InnoWeb3.getSelf();
+    db = InnoDB.getSelf().getDB();
+    web3 = InnoWeb3.getSelf();
 
     // CRUD
     post: RequestChain = RequestChain.default();
