@@ -1,24 +1,31 @@
-import { checkPassword, hashPassword } from "../function/bscript";
+import { AccountSignIn, AccountSignUp } from "../class/usermanagement";
 import RequestChain from "../request/chain";
+import { InnoEventType } from "../request/event";
 import App from "./app";
 
 export default class User extends App {
+    // signup
     override post = RequestChain.create(async (req, res) => {
         const username = req.body["username"];
         const password = req.body["password"];
         const email = req.body["email"];
 
-        const result = await this.db.user.create({
+        // res.status(201).json(result);
+        const data: AccountSignUp = {
+            method: "signup",
+            target: "account",
             data: {
-                username: username,
-                password: await hashPassword(password),
-                email: email,
+                username,
+                password,
+                email,
             },
-        });
+            res,
+        };
 
-        res.status(201).json(result);
+        this.event.publish(InnoEventType.Account, data);
     });
 
+    // sign in
     override get = RequestChain.create(async (req, res) => {
         const email = req.params["id"];
         const password: string | undefined = req.query["password"] as string;
@@ -31,25 +38,29 @@ export default class User extends App {
             return;
         }
 
-        const result = await this.db.user.findUnique({
-            where: {
-                email: email,
+        const data: AccountSignIn = {
+            method: "signin",
+            target: "account",
+            data: {
+                email,
+                password,
+                hashpassword,
             },
-            select: {
-                username: true,
-                password: true,
-            },
-        });
+            res,
+        };
 
-        if (
-            result &&
-            ((typeof password === "string" &&
-                (await checkPassword(password, result.password))) ||
-                result.password === hashpassword)
-        ) {
-            res.status(200).json(result);
-        } else {
-            res.status(404).json({ message: "Not found" });
-        }
+        this.event.publish(InnoEventType.Account, data);
     });
+
+    // update
+    // override put = RequestChain.create(async (req, res) => {
+    //     const email = req.params["id"];
+    //     const password: string | undefined = req.query["password"] as string;
+    // });
+
+    // delete
+    // override delete = RequestChain.create(async (req, res) => {
+    //     const email = req.params["id"];
+    //     const password: string | undefined = req.query["password"] as string;
+    // });
 }

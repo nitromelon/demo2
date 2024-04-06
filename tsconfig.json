@@ -22,5 +22,6 @@
         "noImplicitAny": true,
         "resolveJsonModule": true
     },
-    "files": ["./hardhat/hardhat.config.ts"]
+    "files": ["./src/middleware/user_type.d.ts"],
+    "include": ["./src/**/*"]
 }

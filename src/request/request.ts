@@ -6,6 +6,8 @@ import compression from "compression";
 import { log } from "../middleware/log";
 import { setHeader } from "../middleware/header";
 import CRUD from "./CRUD";
+import Class from "../class/class";
+import InnoEvent, { InnoEventType } from "../request/event";
 
 // note: use signed cookies to prevent cookie tampering
 // note2: separate code from now on
@@ -15,6 +17,7 @@ class InnoBE {
     backendPort: number;
     frontendPort: number;
     address: string;
+    event = InnoEvent.getSelf();
 
     constructor(
         app: Express,
@@ -65,6 +68,9 @@ class InnoBE {
             console.log(`Server is running on port ${this.backendPort}.`);
         });
 
+        // Start the bootstrap process
+        this.event.publish(InnoEventType.Init, "[Bootstrap Process]");
+
         return this;
     }
 
@@ -79,6 +85,15 @@ class InnoBE {
         this.app.put(`${path}/:id`, put.export());
         this.app.delete(`${path}/:id`, del.export());
 
+        return this;
+    }
+
+    subcribe(sub: Class): InnoBE {
+        sub.event.export().forEach((value, key) => {
+            value.forEach((func) => {
+                this.event.subscribe(key, func);
+            });
+        });
         return this;
     }
 
