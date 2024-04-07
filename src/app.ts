@@ -18,6 +18,10 @@ import PrerunAccounts from "./app/prerun/prerun_accounts";
 import PrerunProducts from "./app/prerun/prerun_products";
 import Admin from "./class/account/admin";
 import UserAccount from "./class/account/user";
+import ProductRoute from "./app/product";
+import ShoppingCartRoute from "./app/shoppingcart";
+import Order from "./class/order";
+import OrderRoute from "./app/order";
 
 dotenv.config();
 
@@ -52,7 +56,12 @@ InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     // routes
     .route("/demo", new Demo())
     .route("/user", new User())
+    .route("/product", new ProductRoute())
     .route("/product/management", new ManageProduct())
+    .route("/cart", new ShoppingCartRoute())
+    .route("/order", new OrderRoute())
+
+    // special routes: only run once by admin
     .route("/prerun_accounts", new PrerunAccounts())
     .route("/prerun_products", new PrerunProducts())
 
@@ -64,6 +73,7 @@ InnoBE.create("0.0.0.0", parseInt(backendPort), parseInt(fronendPort))
     .subcribe(new ShoppingCartManager())
     .subcribe(new ShoppingCart())
     .subcribe(new Product())
+    .subcribe(new Order())
     .subcribe(new SalesInvoice())
     .subcribe(new Payment())
     .subcribe(new Receipt())
