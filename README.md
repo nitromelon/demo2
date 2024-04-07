@@ -4,6 +4,10 @@
 - Run command: `npm run docker:build:start` để tạo và chạy nhanh.
 - Hiện tại test xong phải xóa thủ công hehe.
 
+## Very important note
+
+The below readme is outdated. I will update it soon.
+
 ## Temp note
 
 - Upload file flow:
